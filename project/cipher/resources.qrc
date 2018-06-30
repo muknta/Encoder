@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>img/caesar.png</file>
+        <file>img/morse.jpg</file>
+        <file>img/translit.png</file>
+        <file>img/hill.jpg</file>
+        <file>img/key.png</file>
+    </qresource>
+</RCC>
