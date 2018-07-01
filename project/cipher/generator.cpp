@@ -54,33 +54,31 @@ void Generator::on_saving_clicked()
                                                "All files (*.*);;Text files (*.txt);;Doc files (*.doc);;Docx files (*.docx);;Fb2 files(*.fb2)");
 
     QFile file(dir);
-    QByteArray buff;
-    int num = 1;//, sensor = 0, buff_num;
+    QByteArray buff = "";
+    int num = 1;
 
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         while(!file.atEnd()) {
-//            buff_num = 0;
-//            sensor = 1;
             buff = file.readLine();
-//            if ((buff != "\r\n") && (buff != "\n") && (buff != ""))
+//            if (!buff.isNull())
                 num++;
-//            else buff_num = 1;
         }
         file.close();
     }
 
     if (file.open(QIODevice::Append | QIODevice::Text)) {
+        file.write(buff + "\r\n");
         QString pass = ui->label_result->text();
         QString service = ui->service->text();
         if (pass != "<center>result</center>") {
             if (service != "") {
-//                if ((buff_num == 1) || (sensor == 0)) {
+//                if (buff.isNull()){
                     file.write((QString::number(num) + ". " + service + " — " + pass + "\r\n").toUtf8());
 //                } else {
 //                    file.write(("\r\n" + QString::number(num) + ". " + service + " — " + pass + "\r\n").toUtf8());
 //                }
             } else {
-//                if ((buff_num == 1) || (sensor == 0)) {
+//                if (buff.isNull()) {
                     file.write((QString::number(num) + ". " + pass + "\r\n").toUtf8());  // QString to const char* (toUtf8)
 //                } else {
 //                    file.write(("\r\n" + QString::number(num) + ". " + pass + "\r\n").toUtf8());
