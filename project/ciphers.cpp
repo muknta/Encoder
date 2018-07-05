@@ -31,7 +31,6 @@ QString hill_encrypt(QString key, QString word);
 QString hill_descrypt(QString key, QString word);
 
 
-//---------------------------------------------------------------------------------
 /* Password Generator */
 QString pass_generator(QString pass_size_str) {
     int pass_size = pass_size_str.toInt();
@@ -43,11 +42,9 @@ QString pass_generator(QString pass_size_str) {
         t = rand()%3;
         if (t == 0) {
             password[i] = QChar(char(ASCII_A + rand()%26));
-        }
-        else if (t == 1) {
+        } else if (t == 1) {
             password[i] = QChar(char(ASCII_a + rand()%26));
-        }
-        else {
+        } else {
             password[i] = QChar(char(48 + rand()%10));  // ASCII 'zero'
         }
     }
@@ -55,7 +52,6 @@ QString pass_generator(QString pass_size_str) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Caesar Cipher */
 QString caesar(QString str, QString step) {
     int step_int = step.toInt();
@@ -100,7 +96,6 @@ QString caesar(QString str, QString step) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* English to Morse */
 QString eng_to_morse(QString str) {
     char alpha[ENG_ALPH] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
@@ -124,7 +119,6 @@ QString eng_to_morse(QString str) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Morse to English */
 QString morse_to_eng(QString str) {    // added c++11 for syntax of QVector initilization
     QVector <QString> morse = {".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."};
@@ -137,7 +131,7 @@ QString morse_to_eng(QString str) {    // added c++11 for syntax of QVector init
     for (int i = 0; i < str_len; ++i) {
         if ((str[i] == ' ') || (str[i] == '&') || (str[i+1] == '\0')) {
             if ((str[i+1] == '\0') && (str[i] != ' ') && (str[i] != '&'))
-                morse2[0] = morse2[0] + str[i];
+                morse2[0] += str[i];
             for (int j = 0; j < ENG_ALPH; j++) {
                 if (morse2[0] == morse[j])
                     result[counter++] = alpha[j];
@@ -146,13 +140,12 @@ QString morse_to_eng(QString str) {    // added c++11 for syntax of QVector init
             if (str[i] == '&')
                 result[counter++] = ' ';
         }
-        else morse2[0] = morse2[0] + str[i];
+        else morse2[0] += str[i];
     }
     return result;
 }
 
 
-//---------------------------------------------------------------------------------
 /* russian to english */
 QString transl_ruseng(QString str) {
     SetConsoleCP(1251);
@@ -177,8 +170,6 @@ QString transl_ruseng(QString str) {
             int ascii_str = static_cast<unsigned char>(byte_str[0]);
 
             for (int j = 0; j < ENG_ALPH; j++) {
-//                if ((char)(tolower(str[i])) == (char)rus[j]) {
-//                    if ((char)(tolower(str[i])) == str[i]) std::cout << eng[j];
                 if (ascii_str == rus[j]) {
                     if (str[i].toLower() == str[i]) {
                         result += eng[j];
@@ -193,7 +184,6 @@ QString transl_ruseng(QString str) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* english to russian */
 QString transl_engrus(QString str) {
 
@@ -223,7 +213,6 @@ QString transl_engrus(QString str) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Extended Euclidean Algorithm */
 int ext_euc_alg(int det, const int len) {
     int a = det, b = len;
@@ -258,7 +247,6 @@ int ext_euc_alg(int det, const int len) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Matrix Declaring */
 int** mat_declare(int rows, int cols) {
     int** matrix = new int*[rows];
@@ -269,7 +257,6 @@ int** mat_declare(int rows, int cols) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Matrix Filling with declaring */
 int** filling(QString message, int rows, int cols) {
     QString alpha[ENG_ALPH+3] = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," ",",","?"};
@@ -293,7 +280,6 @@ int** filling(QString message, int rows, int cols) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Matrix Freeing */
 void freeing(int** matrix, int rows) {
     for (int i = 0; i < rows; ++i) {
@@ -303,7 +289,6 @@ void freeing(int** matrix, int rows) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Determinant of Matrix */
 int determinant(int** matrix, int size) {
     int det = 0;
@@ -319,7 +304,6 @@ int determinant(int** matrix, int size) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Finding of Inverse Matrix */
 int** inverse_matrix(int** matrix, int size, const int alpha_length) {
 
@@ -376,7 +360,6 @@ int** inverse_matrix(int** matrix, int size, const int alpha_length) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Hill Cipher (Encryption) */
 QString hill_encrypt(QString key, QString word) {
     QString alpha[ENG_ALPH+3] = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," ",",","?"};
@@ -415,7 +398,6 @@ QString hill_encrypt(QString key, QString word) {
 }
 
 
-//---------------------------------------------------------------------------------
 /* Hill Cipher (Descryption) */
 QString hill_descrypt(QString key, QString word) {
     QString alpha[ENG_ALPH+3] = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"," ",",","?"};

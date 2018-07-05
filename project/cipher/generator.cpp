@@ -29,14 +29,13 @@ Generator::~Generator()
 void Generator::on_algorithm_clicked()
 {
     QString pass_length = ui->length->text();
-
-//    if (pass_length < "1000") {
+    if (pass_length.toInt() < 1000) {
         QString result = pass_generator(pass_length);
         ui->label_result->setText(result);
         ui->label_result->setTextInteractionFlags(Qt::TextSelectableByMouse);
-//    } else {
-//        QMessageBox::warning(this, "Some Error", "Length must be < 1000");
-//    }
+    } else {
+        QMessageBox::warning(this, "Some Error", "Length must be < 1000");
+    }
 }
 
 void Generator::on_to_menu_clicked()
@@ -60,8 +59,7 @@ void Generator::on_saving_clicked()
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         while(!file.atEnd()) {
             buff = file.readLine();
-//            if (!buff.isNull())
-                num++;
+            num++;
         }
         file.close();
     }
@@ -72,17 +70,9 @@ void Generator::on_saving_clicked()
         QString service = ui->service->text();
         if (pass != "<center>result</center>") {
             if (service != "") {
-//                if (buff.isNull()){
-                    file.write((QString::number(num) + ". " + service + " — " + pass + "\r\n").toUtf8());
-//                } else {
-//                    file.write(("\r\n" + QString::number(num) + ". " + service + " — " + pass + "\r\n").toUtf8());
-//                }
+                file.write((QString::number(num) + ". " + service + " — " + pass + "\r\n").toUtf8());
             } else {
-//                if (buff.isNull()) {
-                    file.write((QString::number(num) + ". " + pass + "\r\n").toUtf8());  // QString to const char* (toUtf8)
-//                } else {
-//                    file.write(("\r\n" + QString::number(num) + ". " + pass + "\r\n").toUtf8());
-//                }
+                file.write((QString::number(num) + ". " + pass + "\r\n").toUtf8());  // QString to const char* (toUtf8)
             }
         }
         file.close();

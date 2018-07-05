@@ -2,7 +2,6 @@
 #define GENERATOR_H
 
 #include <QMainWindow>
-//#include "saving.h"
 
 namespace Ui {
 class Generator;
@@ -16,9 +15,6 @@ public:
     explicit Generator(QWidget *parent = 0);
     ~Generator();
 
-//signals:
-//    void sendData(QString str);
-
 private slots:
     void on_algorithm_clicked();
 
@@ -30,7 +26,6 @@ private slots:
 
 private:
     Ui::Generator *ui;
-//    Saving *formSave;
 };
 
 #endif // GENERATOR_H

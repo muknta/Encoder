@@ -61,13 +61,6 @@
         </widget>
        </item>
       </layout>
-      <zorder>label_result</zorder>
-      <zorder></zorder>
-      <zorder>algorithm</zorder>
-      <zorder>label_result</zorder>
-      <zorder></zorder>
-      <zorder>algorithm</zorder>
-      <zorder>label</zorder>
      </widget>
     </item>
     <item>

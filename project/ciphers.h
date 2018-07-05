@@ -1,23 +1,15 @@
 #ifndef CIPHERS_H
 #define CIPHERS_H
-#include <iostream>
-#include <cctype>       // tolower(),  islower()
-#include <string>       // type std::string
-#include <vector>
-#include <conio.h>
-//#include <clocale>
-#include <windows.h>
-//#include <cstdlib>
 
-#define ENG_ALPH 26
-#define ASCII_A (int)'A'    // 65
-#define ASCII_Z (int)'Z'    // 90
-#define ASCII_a (int)'a'    // 97
-#define ASCII_z (int)'z'    // 122
+#include <QString>
 
-void caesar();
-// void eng_to_morse();
-// void morse_to_eng();
-// void translit();
+QString caesar(QString str, QString step);
+QString pass_generator(QString pass_size_str);
+QString eng_to_morse(QString str);
+QString morse_to_eng(QString str);
+QString transl_ruseng(QString str);
+QString transl_engrus(QString str);
+QString hill_encrypt(QString key, QString word);
+QString hill_descrypt(QString key, QString word);
 
 #endif
